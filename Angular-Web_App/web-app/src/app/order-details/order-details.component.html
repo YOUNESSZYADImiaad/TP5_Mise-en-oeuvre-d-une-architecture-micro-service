@@ -1,0 +1,54 @@
+<br><br><br><br><br>
+<div class="container" >
+  <h2 class="text-center">
+    Order Details :
+  </h2>
+  <div>
+    <table class="table table-bordered table-striped" *ngIf="order; else noData">
+      <thead>
+      <tr>
+        <th>Date</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td><h4>{{order.billingDate|date:'dd/MM/yyyy' }}</h4></td>
+      </tr>
+      </tbody>
+    </table>
+    <h3>Product Items :</h3>
+    <table class="table table-bordered" *ngIf="order; else noData">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Name</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let or of order.productItems" >
+        <td>{{or.id}}</td>
+        <td>{{or.quantity }}</td>
+        <td>{{or.price}}</td>
+        <td>{{or.productName}}</td>
+      </tr>
+      </tbody>
+    </table>
+    <h3>Customer infos :</h3>
+    <div class="card text-white bg-dark mb-3" *ngIf="order; else noData">
+      <div class="card-header">{{order.customer.id}}</div>
+      <div class="card-body">
+         <h5 class="card-title">{{order.customer.name}}</h5>
+        <p class="card-text">{{order.customer.email}}</p>
+      </div>
+    </div>
+  </div>
+  <ng-template #noData>
+    <div class="container" >
+      <div class="alert alert-info alert-dismissible fade show" role="alert">
+        <strong>OOpps !</strong> No order details available....
+      </div>
+    </div>
+  </ng-template>
+</div>
